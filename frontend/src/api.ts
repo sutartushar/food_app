@@ -1,7 +1,9 @@
 import type { Order, OrderItem, OrderStatus } from "./types";
 
+const API_BASE = import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? "/api" : "/_/backend/api");
+
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_BASE}${path}`, {
     ...init,
     headers: {
       "content-type": "application/json",
